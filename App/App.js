@@ -1,50 +1,39 @@
 import React, { Component, useState } from 'react';
 import {TouchableOpacity, TextInput, Text, View , Image, StyleSheet, Button, ListView, ScrollView, Linking} from 'react-native';
 import { Header } from 'react-native/Libraries/NewAppScreen';
-// import { TabView, SceneMap } from 'react-native-tab-view';
-// import { createStackNavigator} from 'react-navigation';
 
 
-export default function MyApp(){
+export default class MyApp extends Component {
 
-  const [vari, meth] = useState("User");
-  const [value, onChangeText] = React.useState('Useless Fellow');
-  const [clr, onChangeColor] = React.useState('#d3f0f5');
-
-
-  return srcGen();
-
-}
-
-function greetFunc(value){
-  var hours = new  Date().getHours()
-  var message = "Good Evening " + value + "...!!";
   
-  if(hours<6 || hours>19){
-    var message = "Good Night " + value + "...!!";
-  }
-  else if(hours<13 && hours>5){
-    var message = "Good Morning " + value + "...!!";
-  }
-  else if(hours<20 && hours>12){
-    var message = "Good Noon " + value + "...!!";
-  }
-  return message
+  render() {
+    return srcGen()
+  };
 }
 
 function srcGen(){
   return [  
     head(),
-    questions(),
+    body(),
     feet()
   ]
 }
 
 function head(){
+  
   return (
-    <View style={{padding: 10}} >     
-        <Text 
-        style={{padding: 40, fontSize:25, backgroundColor:"#0A79DF", color:"#FFF"}}
+    <View style={{flex:1,justifyContent: "center", backgroundColor:"#0A79DF", 
+    alignItems: "center"}}>
+    {/* <Image 
+       source={{uri: 'https://reactjs.org/logo-og.png'}}
+       style={{width: 400, height: 200}}
+    /> */}
+      <Text 
+        style={{padding:0,
+           fontSize:25,
+            color:"#FFF", 
+            alignItems: "center",
+          justifyContent:'center'}}
       >THE DEVELOPERS FUN</Text>
     </View>
   ); 
@@ -77,61 +66,57 @@ function feet(){
   ); 
 }
 
-function questions(){
-  return [
-      <View style={{padding: 10}} >     
-        <Text 
-        style={{padding: 20, fontSize:25, color:"#1287A5"}}
-      >Java Questions:</Text>
-    </View>,
-    list()
-  ];
+function body(){
 
-}
-function list(){
+  var peed = ""; 
+
   return (
-    <ScrollView>
+    <ScrollView style={{padding: 10, backgroundColor:"#e6f9ff"}} >     
+    <View style={{flex:1,justifyContent: "center",alignItems: "center"}}>
+      <Text 
+        style={{fontSize:20, alignItems:'center', justifyContent:"center", textAlignHori:'center'}} >   
+        Username
+      </Text>
+    </View>
+      
+      <View style={{padding: 10}} > 
+       <TextInput
+         style={{ height: 40, width: 300, borderColor: '#0A79DF', borderWidth: 1, alignSelf:'center'
+         , backgroundColor:"#FFF"}}
+        //  onChangeText={text => onChangeText(text)}
+        //  value={value}
+       />
+     </View>
 
-    <View style={{padding: 10}} >     
+     <View style={{flex:1,justifyContent: "center",alignItems: "center"}}>  
       <Text 
-        style={{padding: 10, fontSize:20}}
-        onPress={() => Linking.openURL("https://www.youtube.com/watch?v=fL_lTlLO6SA")}
-      >Q1 : Find kth node from the end of the Linked List.</Text>
-      <Text 
-        style={{padding: 10, fontSize:20}}
-        onPress={() => alert("Q2 Clicked")}
-      >Q2 : How is HashMap Implemented in Java.</Text>
-        <Text 
-        style={{padding: 10, fontSize:20}}
-        onPress={() => alert("Q2 Clicked")}
-      >Q2 : How is HashMap Implemented in Java.</Text>
-        <Text 
-        style={{padding: 10, fontSize:20}}
-        onPress={() => alert("Q2 Clicked")}
-      >Q2 : How is HashMap Implemented in Java.</Text>
-        <Text 
-        style={{padding: 10, fontSize:20}}
-        onPress={() => alert("Q2 Clicked")}
-      >Q2 : How is HashMap Implemented in Java.</Text>
-        <Text 
-        style={{padding: 10, fontSize:20}}
-        onPress={() => alert("Q2 Clicked")}
-      >Q2 : How is HashMap Implemented in Java.</Text>
-        <Text 
-        style={{padding: 10, fontSize:20}}
-        onPress={() => alert("Q2 Clicked")}
-      >Q2 : How is HashMap Implemented in Java.</Text>
-        </View>
+        style={{fontSize:20}}>
+        Password
+      </Text>
+      </View>
+      <View style={{padding: 10}} > 
+       <TextInput
+          secureTextEntry={true}
+         style={{ height: 40,
+           width: 300,
+            borderColor: '#0A79DF',
+             borderWidth: 1,
+              alignSelf:'center'
+              , backgroundColor:"#FFF"
+             }}
+             onChangeText={(text) => peed={text}}     
+        //  onChangeText={text => onChangeText(text)}
+        //  value={value}
+       />
+     </View>
+
+  <Button
+  style={{fontSize: 20, color: 'green', padding:20}}
+  styleDisabled={{color: 'red'}}
+  onPress={() => alert("this.props.peed")}
+  title="Submit">
+  </Button>
+
     </ScrollView>
-
-
-  //   <TabViewVertical
-  //   initialLayout={initialLayout}
-  //   renderTabBar={this._renderTabs}
-  //   style={styles.container}
-  //   navigationState={this.state}
-  //   renderScene={this._renderScene}
-  //   onIndexChange={this._handleIndexChange}
-  // />
   ); 
 }
